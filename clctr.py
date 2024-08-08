@@ -9,6 +9,50 @@ ALLOWED_CHARS =list("0123456789./-+*%()")
 Last_Display = ""
 Prepare_for_New_input = False   
 
+
+def check_safe_for_eval(user_input):  
+    for char in user_input:
+        if char not in ALLOWED_CHARS:
+            return False 
+    return True
+   
+def del_operator():    
+    current = display_entry.get()
+    if len(current) > 0:
+        if current[-1] in OPS:
+            last_index = len(current) -1
+            display_entry.delete(last_index, END)    
+                
+
+def update_input_ready_status(func=False):    
+    global Prepare_for_New_input   
+    if func == True:
+        Prepare_for_New_input = True
+    else:
+        Prepare_for_New_input = False 
+
+
+def insert_multiplication():   
+    current = display_entry.get()
+    if current != "":
+        if current[-1] == ")":
+            display_entry.insert(END, "*")
+            
+
+def number_input(num):
+    insert_multiplication() 
+    if Prepare_for_New_input == True:
+        display_entry.delete(0, END)      
+    update_input_ready_status()   
+    display_entry.insert(END, num)
+
+
+def operator_button(operator):
+    del_operator()
+    update_input_ready_status()
+    display_entry.insert(END, operator)
+    
+
 window = Tk()
 window.config(padx=15, pady=15, bg=COLORS[0], highlightthickness=0)
 window.title("Python calc")
@@ -78,6 +122,19 @@ point_button = Button(button_frame, text=".", font=BUTTON_FONT, width=3,height=1
 point_button.grid(column=2, row=4)
 equals_button = Button(button_frame, text="=", font=BUTTON_FONT, width=3,height=1, highlightthickness=0, command=equals, bg=COLORS[1], fg=COLORS[3])
 equals_button.grid(column=3, row=4)
+
+
+def backspace(event):   
+    current = display_entry.get()
+    focus = str(window.focus_get())        
+    if focus != ".!frame.!entry":
+        if len(current) > 0:
+            last_index = len(current) -1
+            display_entry.delete(last_index, END)  
+
+
+window.bind("<BackSpace>", backspace) 
+window.bind("<Escape>", lambda event: clear())  
 
 window.mainloop()
 

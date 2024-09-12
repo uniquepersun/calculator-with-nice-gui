@@ -18,7 +18,7 @@ Perform addition, subtraction, multiplication, division, and other common operat
 
 ## Some screenshots for you :)
 - watch it in action!
-    - [here](![image](https://github.com/user-attachments/assets/5b279508-3bec-40d3-a814-baad4bd16060)
+    - [here](https://github.com/user-attachments/assets/5b279508-3bec-40d3-a814-baad4bd16060)
     - [another!](https://github.com/user-attachments/assets/5336eef7-32d1-4f22-997e-144b8da5c6e0)
 
 
